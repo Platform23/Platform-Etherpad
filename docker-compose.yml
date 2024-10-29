@@ -11,17 +11,17 @@ services:
       - postgres
     environment:
       NODE_ENV: production
-      ADMIN_PASSWORD: ${DOCKER_COMPOSE_APP_ADMIN_PASSWORD:-admin}
+      ADMIN_PASSWORD: ${{ secrets.ETHERPAD_ADMIN_PASSWORD }}
       DB_CHARSET: ${DOCKER_COMPOSE_APP_DB_CHARSET:-utf8mb4}
       DB_HOST: postgres
-      DB_NAME: ${DOCKER_COMPOSE_POSTGRES_DATABASE:-etherpad}
-      DB_PASS: ${DOCKER_COMPOSE_POSTGRES_PASSWORD:-admin}
-      DB_PORT: ${DOCKER_COMPOSE_POSTGRES_PORT:-5432}
+      DB_NAME: ${{ secrets.POSTGRES_DB }}
+      DB_PASS: ${{ secrets.POSTGRES_PASSWORD }}
+      DB_PORT: ${{ secrets.POSTGRES_PORT }}
       DB_TYPE: "postgres"
-      DB_USER: ${DOCKER_COMPOSE_POSTGRES_USER:-admin}
+      DB_USER: ${{ secrets.POSTGRES_USER }}
       # For now, the env var DEFAULT_PAD_TEXT cannot be unset or empty; it seems to be mandatory in the latest version of etherpad
-      DEFAULT_PAD_TEXT: ${DOCKER_COMPOSE_APP_DEFAULT_PAD_TEXT:- }
-      DISABLE_IP_LOGGING: ${DOCKER_COMPOSE_APP_DISABLE_IP_LOGGING:-false}
+      DEFAULT_PAD_TEXT: ${{ secrets.DEFAULT_PAD_TEXT }}
+      DISABLE_IP_LOGGING: ${{ secrets.DISABLE_IP_LOGGING }}
       SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
     restart: always
@@ -31,10 +31,10 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ${DOCKER_COMPOSE_POSTGRES_DATABASE:-etherpad}
-      POSTGRES_PASSWORD: ${DOCKER_COMPOSE_POSTGRES_PASSWORD:-admin}
-      POSTGRES_PORT: ${DOCKER_COMPOSE_POSTGRES_PORT:-5432}
-      POSTGRES_USER: ${DOCKER_COMPOSE_POSTGRES_USER:-admin}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: always
     # ports:
