@@ -1,7 +1,11 @@
 services:
   app:
     user: "0:0"
-    image: etherpad/etherpad:latest
+    # image: etherpad/etherpad:latest
+    image: platformht/etherpad:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -20,13 +24,13 @@ services:
       DB_TYPE: "postgres"
       DB_USER: ${{ secrets.POSTGRES_USER }}
       # For now, the env var DEFAULT_PAD_TEXT cannot be unset or empty; it seems to be mandatory in the latest version of etherpad
-      DEFAULT_PAD_TEXT: ${{ secrets.DEFAULT_PAD_TEXT }}
+      DEFAULT_PAD_TEXT: "Bienvenue sur Etherpad!"
       DISABLE_IP_LOGGING: ${{ secrets.DISABLE_IP_LOGGING }}
       SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
     restart: always
     ports:
-      - "${DOCKER_COMPOSE_APP_PORT_PUBLISHED:-9001}:${DOCKER_COMPOSE_APP_PORT_TARGET:-9001}"
+      - "9001:9001"
 
   postgres:
     image: postgres:15-alpine
