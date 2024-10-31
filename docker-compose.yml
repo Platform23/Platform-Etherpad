@@ -30,7 +30,7 @@ services:
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
     restart: always
     ports:
-      - "9001:9001"
+      - "80:80"
 
   postgres:
     image: postgres:15-alpine
