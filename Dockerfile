@@ -33,7 +33,7 @@ COPY ./nginx/gzip.conf /etc/nginx/conf.d/gzip.conf
 # WORKDIR /opt/etherpad-lite
 
 # Expose the Etherpad port
-EXPOSE 80
+EXPOSE 9001
 
 # Start Etherpad
 CMD ["nginx", "-g", "daemon off;"]
