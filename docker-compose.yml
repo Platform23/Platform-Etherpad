@@ -15,14 +15,14 @@ services:
       - postgres
     environment:
       NODE_ENV: production
-      ADMIN_PASSWORD: ${{ secrets.ETHERPAD_ADMIN_PASSWORD }}
+      ADMIN_PASSWORD: $$ETHERPAD_ADMIN_PASSWORD
       DB_CHARSET: ${DOCKER_COMPOSE_APP_DB_CHARSET:-utf8mb4}
       DB_HOST: postgres
-      DB_NAME: ${{ secrets.POSTGRES_DB }}
-      DB_PASS: ${{ secrets.POSTGRES_PASSWORD }}
-      DB_PORT: ${{ secrets.POSTGRES_PORT }}
+      DB_NAME: $$POSTGRES_DB
+      DB_PASS: $$POSTGRES_PASSWORD
+      DB_PORT: $$POSTGRES_PORT
       DB_TYPE: "postgres"
-      DB_USER: ${{ secrets.POSTGRES_USER }}
+      DB_USER: $$POSTGRES_USER
       # For now, the env var DEFAULT_PAD_TEXT cannot be unset or empty; it seems to be mandatory in the latest version of etherpad
       DEFAULT_PAD_TEXT: "Bienvenue sur Etherpad!"
       DISABLE_IP_LOGGING: "false"
@@ -35,10 +35,10 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: $$POSTGRES_DB
+      POSTGRES_PASSWORD: $$POSTGRES_PASSWORD
+      POSTGRES_PORT: $$POSTGRES_PORT
+      POSTGRES_USER: $$POSTGRES_USER }}
       PGDATA: /var/lib/postgresql/data/pgdata
     restart: always
     # ports:
