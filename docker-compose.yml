@@ -20,7 +20,7 @@ services:
       DB_TYPE: "postgres"
       DB_USER: ${{ secrets.POSTGRES_USER }}
       # For now, the env var DEFAULT_PAD_TEXT cannot be unset or empty; it seems to be mandatory in the latest version of etherpad
-      DEFAULT_PAD_TEXT: ${{ secrets.DEFAULT_PAD_TEXT }}
+      DEFAULT_PAD_TEXT: "Bienvenue sur Etherpad!"
       DISABLE_IP_LOGGING: ${{ secrets.DISABLE_IP_LOGGING }}
       SOFFICE: ${DOCKER_COMPOSE_APP_SOFFICE:-null}
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
