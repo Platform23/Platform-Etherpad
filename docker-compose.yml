@@ -1,7 +1,11 @@
 services:
   app:
     user: "0:0"
-    image: etherpad/etherpad:latest
+    # image: etherpad/etherpad:latest
+    image: platformht/etherpad:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     tty: true
     stdin_open: true
     volumes:
@@ -26,7 +30,7 @@ services:
       TRUST_PROXY: ${DOCKER_COMPOSE_APP_TRUST_PROXY:-true}
     restart: always
     ports:
-      - "${DOCKER_COMPOSE_APP_PORT_PUBLISHED:-9001}:${DOCKER_COMPOSE_APP_PORT_TARGET:-9001}"
+      - "9001:9001"
 
   postgres:
     image: postgres:15-alpine
