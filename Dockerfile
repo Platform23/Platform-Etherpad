@@ -1,5 +1,5 @@
 # Start with the Etherpad base image
-FROM etherpad/etherpad:2.2.7
+FROM etherpad/etherpad:latest
 
 # # Set environment variables for Etherpad configuration
 # ENV NODE_ENV=production \
