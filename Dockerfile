@@ -30,7 +30,7 @@ FROM etherpad/etherpad:latest
 # COPY ./nginx/gzip.conf /etc/nginx/conf.d/gzip.conf
 
 # # Set the working directory
-# # WORKDIR /opt/etherpad-lite
+# # WORKDIR /opt/etherpad-lite 
 
 # # Expose the Etherpad port
 # EXPOSE 9001
